@@ -21,7 +21,12 @@ import sys
 import subprocess
 
 #=============================================
-# currentパス & parentパス
+#　CSVファイルのIDカラム名（必要に応じて変更してください）
+#=============================================
+ID = 'id'
+
+#=============================================
+# 現在の作業ディレクトリ（スクリプトのあるディレクトリなど）を取得
 #=============================================
 current_dpath = os.getcwd()
 parent_dpath = os.path.dirname(current_dpath)
@@ -78,8 +83,8 @@ data_df = pd.concat(data_list, axis=0, ignore_index=True)
 #=============================================
 # 重複IDチェック
 #=============================================
-if data_df["id"].duplicated().any():
-    dup_ids = data_df.loc[data_df["id"].duplicated(), "id"].unique()
+if data_df[ID].duplicated().any():
+    dup_ids = data_df.loc[data_df["id"].duplicated(), ID].unique()
     print(f"❌ 重複したIDが見つかりました: {list(dup_ids)}")
     print("処理を中止します。")
     sys.exit(1)
