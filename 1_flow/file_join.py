@@ -84,7 +84,7 @@ data_df = pd.concat(data_list, axis=0, ignore_index=True)
 # 重複IDチェック
 #=============================================
 if data_df[ID].duplicated().any():
-    dup_ids = data_df.loc[data_df["id"].duplicated(), ID].unique()
+    dup_ids = data_df.loc[data_df[ID].duplicated(), ID].unique()
     print(f"❌ 重複したIDが見つかりました: {list(dup_ids)}")
     print("処理を中止します。")
     sys.exit(1)
